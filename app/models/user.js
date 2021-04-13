@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  zipcode: {
+    type: Number,
+    required: true
+  },
   privacy: {
   type: Boolean,
   default: false,

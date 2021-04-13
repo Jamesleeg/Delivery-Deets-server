@@ -6,8 +6,8 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  title: {
-    type: String,
+  zipcode: {
+    type: Number,
     required: true
   },
   body: {
