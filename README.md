@@ -3,7 +3,7 @@
 # DeliveryDeets
 
 A template for starting projects with `express` as an API. Includes
-authentication and common middlewares. g
+authentication and common middlewares. gs
 
 ## Installation
 
