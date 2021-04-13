@@ -10,9 +10,9 @@ const Post = require('./../models/post')
 
 const router = express.Router()
 
-router.post('/posts', requireToken, (req, res, next) => {
+router.post('/post', requireToken, (req, res, next) => {
   // require token with middleware
-  console.log("The user OBJ:", req.user)
+  console.log('The user OBJ:', req.user)
   console.log("the incoming event data is", req.body)
 
   const postData = req.body.post
@@ -25,7 +25,7 @@ router.post('/posts', requireToken, (req, res, next) => {
 })
 
   // / index
-router.get('/posts/', requireToken, (req, res, next) => {
+router.get('/post/', requireToken, (req, res, next) => {
   console.log(req.user._id)
   const userId = req.user._id
 
@@ -34,7 +34,7 @@ router.get('/posts/', requireToken, (req, res, next) => {
     .catch(next)
 })
 // delte
-router.delete('/posts/:id', requireToken, (req, res, next) => {
+router.delete('/post/:id', requireToken, (req, res, next) => {
   Post.findById(req.params.id)
     .then(handle404)
     .then(post => {
@@ -45,7 +45,7 @@ router.delete('/posts/:id', requireToken, (req, res, next) => {
     .catch(next)
 })
 // update
-router.patch('/posts/:id', requireToken, removeBlanks, (req, res, next) => {
+router.patch('/post/:id', requireToken, removeBlanks, (req, res, next) => {
 
   delete req.body.post.owner
 
