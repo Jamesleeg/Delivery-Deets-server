@@ -11,15 +11,16 @@ const Post = require('./../models/post')
 const router = express.Router()
 
 router.post('/post', requireToken, (req, res, next) => {
-  // require token with middleware
+
   console.log('The user OBJ:', req.user)
-  console.log("the incoming event data is", req.body)
+  console.log('the incoming event data is', req.body)
 
-  const postData = req.body.post
-
+  const postData = req.body
   postData.owner = req.user._id
-
+  // owner = req.user._id
+  console.log('this is postData', postData)
   Post.create(postData)
+  // console.log('this is req.body.owner', req.body.owner)
     .then(post => res.status(201).json(post))
     .catch(next)
 })
