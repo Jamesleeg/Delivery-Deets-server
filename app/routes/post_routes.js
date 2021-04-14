@@ -1,9 +1,9 @@
 const express = require('express')
 
-const passport = require ('passport')
-const requireToken = passport.authenticate( 'bearer', { session: false})
+const passport = require('passport')
+const requireToken = passport.authenticate('bearer', { session: false })
 
-const { handle404, requireOwnership} = require('../../lib/custom_errors')
+const { handle404, requireOwnership } = require('../../lib/custom_errors')
 const removeBlanks = require('../../lib/remove_blank_fields')
 
 const Post = require('./../models/post')
@@ -11,23 +11,26 @@ const Post = require('./../models/post')
 const router = express.Router()
 
 router.post('/post', requireToken, (req, res, next) => {
-
-  console.log('The user OBJ:', req.user)
-  console.log('the incoming event data is', req.body)
+  // console.log('The user OBJ:', req.user)
+  // console.log('the incoming event data is', req.body)
 
   const postData = req.body
   postData.owner = req.user._id
   // owner = req.user._id
-  console.log('this is postData', postData)
+  // console.log('this is postData', postData)
   Post.create(postData)
   // console.log('this is req.body.owner', req.body.owner)
-    .then(post => res.status(201).json(post))
+    .then(post => {
+      console.log('this is the created post', post)
+      return post
+    })
+    .then(post => res.status(201).json(post.toObject()))
     .catch(next)
 })
 
-  // / index
+// / index
 router.get('/post/', requireToken, (req, res, next) => {
-  console.log(req.user._id)
+  // console.log(req.user._id)
   const userId = req.user._id
 
   Post.find({owner: userId})
@@ -47,7 +50,6 @@ router.delete('/post/:id', requireToken, (req, res, next) => {
 })
 // update
 router.patch('/post/:id', requireToken, removeBlanks, (req, res, next) => {
-
   delete req.body.post.owner
 
   Post.findById(req.params.id)
@@ -65,10 +67,5 @@ router.patch('/post/:id', requireToken, removeBlanks, (req, res, next) => {
 
     .catch(next)
 })
-
-
-
-
-
 
 module.exports = router
