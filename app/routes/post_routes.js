@@ -67,5 +67,15 @@ router.patch('/post/:id', requireToken, removeBlanks, (req, res, next) => {
 
     .catch(next)
 })
+// // show
+router.get('/post/:id', requireToken, (req, res, next) => {
+  // req.params.id will be set based on the `:id` in the route
+  Post.findById(req.params.id)
+    .then(handle404)
+    // if `findById` is succesful, respond with 200 and "example" JSON
+    .then(post => res.status(200).json({ post: post.toObject() }))
+    // if an error occurs, pass it to the handler
+    .catch(next)
+})
 
 module.exports = router

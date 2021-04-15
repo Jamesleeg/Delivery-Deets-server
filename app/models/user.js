@@ -20,9 +20,9 @@ const userSchema = new mongoose.Schema({
     required: true
   },
   privacy: {
-  type: Boolean,
-  default: false,
-  required: true
+    type: Boolean,
+    default: false,
+    required: true
 },
   token: String
 }, {
