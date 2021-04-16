@@ -10,7 +10,7 @@ const postRoutes = require('./app/routes/post_routes')
 // require middleware
 const errorHandler = require('./lib/error_handler')
 const requestLogger = require('./lib/request_logger')
-const bodyParser = require("body-parser")
+const bodyParser = require('body-parser')
 // require database configuration logic
 // `db` will be the actual Mongo URI as a string
 const db = require('./config/db')
@@ -51,7 +51,7 @@ app.use(auth)
 app.use(express.json())
 // this parses requests sent by `$.ajax`, which use a different content type
 app.use(express.urlencoded({ extended: true }))
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }))
 // log each request as it comes in for debugging
 app.use(requestLogger)
 

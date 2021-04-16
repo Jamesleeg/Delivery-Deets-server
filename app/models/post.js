@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const postSchema = new mongoose.Schema({
   restaurant: {
     type: String,
@@ -20,7 +19,7 @@ const postSchema = new mongoose.Schema({
     required: true
   }
 }, {
-    timestamps: true
+  timestamps: true
 })
 
 module.exports = mongoose.model('Post', postSchema)

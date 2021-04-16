@@ -37,7 +37,7 @@ router.get('/post/', requireToken, (req, res, next) => {
     .then(posts => res.json(posts))
     .catch(next)
 })
-// delte
+// delete
 router.delete('/post/:id', requireToken, (req, res, next) => {
   Post.findById(req.params.id)
     .then(handle404)
