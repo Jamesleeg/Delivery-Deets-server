@@ -144,13 +144,13 @@ router.patch('/change-privacy', requireToken, (req, res, next) => {
   User.findById(req.user.id)
     // save user outside the promise chain
     .then(user => {
-      console.log(user.privacy, 'my original privacy')
+      // console.log(user.privacy, 'my original privacy')
       user.privacy = req.body.privacy
       return user.save()
     })
     // respond with no content and status 200
     .then((user) => {
-      console.log(user, 'should have updated privacy')
+      // console.log(user, 'should have updated privacy')
       res.status(200).json({ user })
     })
     // pass any errors along to the error handler
